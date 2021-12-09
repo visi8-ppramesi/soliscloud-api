@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import apiCaller from "./utils/caller.js"
+import apiBuilder from './utils/builder.js'
 import _ from 'lodash'
 
 const env = dotenv.config().parsed
@@ -15,9 +15,4 @@ const apiParams = {
     }
 }
 
-export default Object.keys(apiParams).reduce((acc, apiName) => {
-    acc[apiName] = (args) => {
-        return apiCaller(args, apiParams[apiName]).then(res => res.data)
-    }
-    return acc
-}, {})
+export default apiBuilder(apiParams)
