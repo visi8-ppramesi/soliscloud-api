@@ -11,18 +11,33 @@ const apiCaller = (args, apiParams) => {
     const params = {}
 
     if(apiParams.optParams.length > 0){
-        const optParams = apiParams.optParams
-        optParams.forEach((optKey) => {
+        apiParams.optParams.forEach((optKey) => {
             if(args[optKey]){
                 params[optKey] = args[optKey]
             }
         })
     }
-    if(apiParams.params.length > 0){
-        const wajibParams = apiParams.params
-        wajibParams.forEach((wajibKey) => {
-            if(!args[wajibKey]) throw 'error'
-            params[wajibKey] = args[wajibKey]
+
+    if(apiParams.requiredParams.length > 0){
+        apiParams.requiredParams.forEach((reqKey) => {
+            if(!args[reqKey]) throw 'error'
+            params[reqKey] = args[reqKey]
+        })
+    }
+
+    if(apiParams.pairedReqParams.length > 0){
+        apiParams.pairedReqParams.forEach((reqKeys) => {
+            let found = false
+            if(reqKeys.length > 0){
+                if(args[reqKey]){
+                    found = true
+                    params[reqKeys] = args[reqKeys]
+                }
+            }else{
+                found = true
+            }
+            if(!found) throw 'error'
+            params[reqKeys] = args[reqKeys]
         })
     }
 

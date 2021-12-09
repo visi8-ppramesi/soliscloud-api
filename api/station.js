@@ -5,11 +5,19 @@ import _ from 'lodash'
 const env = dotenv.config().parsed
 
 const apiParams = {
-    userStationList: { path: '/v1/api/userStationList', params: [], optParams: ['pageNo', 'pageSize', 'userId'] }
-}
-
-export default {
-    userStationList(args){
-        return apiCaller(args, apiParams.userStationList).then(res => res.data)
+    userStationList: {
+        path: '/v1/api/userStationList',
+        requiredParams: [],
+        optParams: ['pageNo', 'pageSize', 'userId'],
+        pairedReqParams: [
+            []
+        ]
     }
 }
+
+export default Object.keys(apiParams).reduce((acc, apiName) => {
+    acc[apiName] = (args) => {
+        return apiCaller(args, apiParams[apiName]).then(res => res.data)
+    }
+    return acc
+}, {})
