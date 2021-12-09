@@ -1,5 +1,5 @@
 import axios from "axios"
-import paramsUtils from "../../utils/params.js"
+import paramsUtils from "./params.js"
 import _ from 'lodash'
 import dotenv from 'dotenv'
 

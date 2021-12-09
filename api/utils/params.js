@@ -1,4 +1,4 @@
-import encrypter from "./encrypter.js"
+import encrypter from "../../utils/encrypter.js"
 
 export default {
     processParams(params, path){
