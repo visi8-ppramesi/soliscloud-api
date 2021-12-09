@@ -36,6 +36,7 @@ const apiCaller = (args, apiParams) => {
             }else{
                 found = true
             }
+            if(!found) throw 'error'
         })
     }
 
