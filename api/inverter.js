@@ -70,4 +70,8 @@ const apiParams = {
     },
 }
 
+export const inverterConfig = {
+    apiParams
+}
+
 export default apiBuilder(apiParams)

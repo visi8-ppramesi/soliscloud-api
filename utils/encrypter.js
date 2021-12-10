@@ -3,14 +3,22 @@ import dotenv from 'dotenv'
 
 const env = dotenv.config().parsed
 
-const toHmacSha1 = (message) => {
-    return cryptoJs.enc.Base64.stringify(cryptoJs.HmacSHA1(message, env.SOLIS_SECRET_KEY))
+const toHmacSha1 = (message, secretKey = null) => {
+    const secret = secretKey ?? env.SOLIS_SECRET_KEY
+    return cryptoJs.enc.Base64.stringify(cryptoJs.HmacSHA1(message, secret))
 }
 
-const createApiAuth = ({verb = 'POST', contentMd5, contentType = "application/json", date = (new Date()).toGMTString(), canonSource}) => {
+const createApiAuth = ({
+    verb = 'POST', 
+    contentMd5, 
+    contentType = "application/json", 
+    date = (new Date()).toGMTString(), 
+    canonSource
+}, keyId = null, secretKey = null) => {
     const authPreEncryptedText = [verb, contentMd5, contentType, date, canonSource].join('\n')
-    const encryptedText = toHmacSha1(authPreEncryptedText)
-    return 'API ' + env.SOLIS_KEY_ID + ':' + encryptedText
+    const kid = keyId ?? env.SOLIS_KEY_ID
+    const encryptedText = toHmacSha1(authPreEncryptedText, secretKey)
+    return 'API ' + kid + ':' + encryptedText
 }
 
 const toMd5 = (text) => {

@@ -115,4 +115,8 @@ const apiParams = {
     },
 }
 
+export const stationConfig = {
+    apiParams
+}
+
 export default apiBuilder(apiParams)

@@ -16,4 +16,8 @@ const apiParams = {
     },
 }
 
+export const alarmConfig = {
+    apiParams
+}
+
 export default apiBuilder(apiParams)

@@ -16,4 +16,8 @@ const apiParams = {
     },
 }
 
+export const deviceConfig = {
+    apiParams
+}
+
 export default apiBuilder(apiParams)

@@ -52,4 +52,8 @@ const apiParams = {
     },
 }
 
+export const collectorConfig = {
+    apiParams
+}
+
 export default apiBuilder(apiParams)

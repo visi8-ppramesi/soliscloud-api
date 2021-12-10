@@ -16,4 +16,8 @@ const apiParams = {
     },
 }
 
+export const userConfig = {
+    apiParams
+}
+
 export default apiBuilder(apiParams)
