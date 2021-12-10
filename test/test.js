@@ -7,5 +7,9 @@ describe('Api', function() {
             const response = await station.userStationList({})
             assert.equal(response.success, true)
         })
+        it('calling stationDetail', async function() {
+            const response = await station.stationDetail({id: "1298491919448679434"})
+            assert.equal(response.success, true)
+        })
     })
 })
