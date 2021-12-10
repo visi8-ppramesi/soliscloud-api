@@ -5,13 +5,13 @@ import _ from 'lodash'
 const env = dotenv.config().parsed
 
 const apiParams = {
-    alarmList: {
-        name: 'Alarm Info Check',
-        path: '/v1/api/alarmList',
+    addDevice: {
+        name: 'Add Device',
+        path: '/v1/api/addDevice',
         requiredParams: [],
-        optParams: ['pageNo', 'pageSize', 'stationId', 'alarmDeviceSn', 'alarmBeginTime', 'alarmEndTime'],
+        optParams: [],
         pairedReqParams: [
-            []
+            ['id', 'sn']
         ]
     },
 }
