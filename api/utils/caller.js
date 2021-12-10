@@ -44,21 +44,25 @@ const parseParams = (args, apiParams) => {
     return params
 }
 
+const axiosPostCaller = (url, params, headerData) => {
+    return axios.post(url, params, {
+        headers: {
+            'Content-MD5': headerData.md5Data,
+            Authorization: headerData.apiAuth,
+            date: headerData.date
+        }
+    })
+}
+
 export default function apiCaller(args, apiParams){
     const path = apiParams.path
     const params = parseParams(args, apiParams)
 
     baseUrl.pathname = path
     const url = baseUrl.toString()
-    const processedParams = paramsUtils.processParams(params, path)
+    const headerData = paramsUtils.processParams(params, path)
 
-    return axios.post(url, params, {
-        headers: {
-            'Content-MD5': processedParams.md5Data,
-            Authorization: processedParams.apiAuth,
-            date: processedParams.date
-        }
-    })
+    return axiosPostCaller(url, params, headerData)
 }
 
 export function boundApiCaller(args, apiParams, keyId, secretKey){
@@ -67,13 +71,7 @@ export function boundApiCaller(args, apiParams, keyId, secretKey){
 
     baseUrl.pathname = path
     const url = baseUrl.toString()
-    const processedParams = paramsUtils.processParams(params, path, keyId, secretKey)
+    const headerData = paramsUtils.processParams(params, path, keyId, secretKey)
 
-    return axios.post(url, params, {
-        headers: {
-            'Content-MD5': processedParams.md5Data,
-            Authorization: processedParams.apiAuth,
-            date: processedParams.date
-        }
-    })
+    return axiosPostCaller(url, params, headerData)
 }
