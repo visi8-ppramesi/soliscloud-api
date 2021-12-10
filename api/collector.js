@@ -18,7 +18,7 @@ const apiParams = {
         name: 'Datalogger Details',
         path: '/v1/api/collectorDetail',
         requiredParams: [],
-        optParams: [''],
+        optParams: [],
         pairedReqParams: [
             ['id', 'sn']
         ]

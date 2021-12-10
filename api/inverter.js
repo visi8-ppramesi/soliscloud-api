@@ -7,7 +7,7 @@ const env = dotenv.config().parsed
 const apiParams = {
     inverterList: {
         name: 'Inverter List',
-        path: '/v1/api/inverterList',
+        path: '/v1/api/inveterList',
         requiredParams: [],
         optParams: ['pageNo', 'pageSize', 'stationId'],
         pairedReqParams: [
@@ -16,7 +16,7 @@ const apiParams = {
     },
     inverterDetail: {
         name: 'Inverter Details',
-        path: '/v1/api/inverterDetail',
+        path: '/v1/api/inveterDetail',
         requiredParams: [],
         optParams: [''],
         pairedReqParams: [
